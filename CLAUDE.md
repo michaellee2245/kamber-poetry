@@ -162,6 +162,8 @@ All tunables (`counts`, `minFrequency`, lengths, `candidateMultiplier`, `maxRequ
 - **Language:** plain JavaScript.
 - **Hosting:** Vercel.
 - **Word source:** Datamuse instead of Wordnik (Wordnik keys need approval). No API key or `.env` needed.
+- **Poem title:** optional, editable above the poem, saved with it, and used as the email subject and the printed heading.
+- **Breakpoint:** at 800px and below the word bank becomes a bottom sheet and the toolbar sticks to the bottom of the screen.
 - **Connectors** (confirmed as standard) also include helper verbs (is, are, was, be, have, do, will, can, could, should, may, might, must, ...) since Datamuse verbs don't include them reliably and poems need them.
 
 ## Conventions

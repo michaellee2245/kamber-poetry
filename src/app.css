@@ -1,9 +1,126 @@
 :root {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --paper: #f7f3ec;
+  --sheet: #fffdf9;
+  --panel: #efe9df;
+  --ink: #2b2620;
+  --muted: #6e655a;
+  --line: #d9d0c3;
+  --accent: #9b3d2c;
+  --accent-ink: #ffffff;
+  --chip-bg: #fffdf9;
+  --chip-hover: #f6e9e2;
+  --focus: #1f6feb;
+  --shadow: 0 1px 2px rgb(60 40 20 / 0.06), 0 8px 24px rgb(60 40 20 / 0.06);
+
+  font-family: var(--sans);
   line-height: 1.5;
   color-scheme: light dark;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1a17;
+    --sheet: #24211d;
+    --panel: #201e1a;
+    --ink: #ece6dc;
+    --muted: #a69c8f;
+    --line: #3d3832;
+    --accent: #e08a72;
+    --accent-ink: #1c1a17;
+    --chip-bg: #2a2722;
+    --chip-hover: #3a2c26;
+    --focus: #79b0ff;
+    --shadow: none;
+  }
+}
+
 body {
   margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Shared button look (toolbar, save menu). */
+button,
+a.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.45em 0.9em;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--sheet);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled),
+a.button:hover {
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Clear keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.print-only {
+  display: none;
+}
+
+/* "Download PDF" uses the browser's print dialog: show only the poem. */
+@media print {
+  @page {
+    margin: 2cm;
+  }
+
+  :root {
+    --ink: #000;
+    --muted: #555;
+    --sheet: #fff;
+    --paper: #fff;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
 }
